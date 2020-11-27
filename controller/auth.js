@@ -68,6 +68,7 @@ module.exports = {
         res.status(200).json({
                     success : true,
                     token : `Bearer ${token}`,
+                    user : user,
                     msg: 'you got your token'
                 });
 
