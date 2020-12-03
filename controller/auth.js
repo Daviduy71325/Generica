@@ -36,7 +36,11 @@ module.exports = {
 
         await newUser.save();
 
-        res.status(200).json(newUser);
+        res.status(200).json({ 
+            success : true,
+            message : 'Succesfully Saved',
+            user : newUser
+        });
     },
 
     logIn : async (req, res) => {
