@@ -47,12 +47,12 @@ module.exports = {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
         
-        if(!user) { return res.status(400).json({msg : 'username not found', success : false})};
+        if(!user) { return res.status(400).json({msg : 'username or password is incorrect', success : false})};
 
         const checkPassword = await bcrypt.compare(password, user.password);
      
         if(!checkPassword) { return res.status(400).json({
-            msg : 'password incorrect',
+            msg : 'username or password is incorrect',
             success : false
         })};
 
