@@ -28,8 +28,12 @@ mongoose.connect(db, { useNewUrlParser: true , useUnifiedTopology: true  })
     })
     .catch(err => console.log(`Unable to connect to db ${err}`));
 
-app.use('/', require('./routes/auth/auth'));
-app.use('/users', require('./routes/admin/admin.router'));
+app.use('/api/', require('./routes/auth/auth'));
+app.use('/api/users', require('./routes/admin/admin.router'));
+
+// app.get('*', (req , res) =>{
+//     res.sendFile(path.join(__dirname, 'public/index.html'));
+// });
 
 const port =  process.env.PORT || 5000;
 app.listen(port);

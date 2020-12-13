@@ -13,14 +13,15 @@ module.exports = {
             contact_number,
             address,
             username,
-            password
+            password,
+            role
         } =  req.body;
 
         const foundUser = await User.findOne({ "username": username});
         if(foundUser){ return res.status(400).json({ error : 'username is already in use'})};
 
         const foundName = await User.findOne({ "name": name});
-        if(foundName){ return res.status(400).json({ error : 'name is already in use'})};
+        if(foundName){ return res.status(400).json({ error : `${name} has already a role`})};
         
         const salt = await bcrypt.genSalt(10);
         const passwordHash = await bcrypt.hash(password, salt);
@@ -31,6 +32,7 @@ module.exports = {
             address,
             username,
             password : passwordHash,
+            role,
             date_updated : Date.now()
         });
 
